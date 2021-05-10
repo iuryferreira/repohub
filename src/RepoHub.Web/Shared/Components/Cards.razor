@@ -1,0 +1,35 @@
+@using Models
+@inject State State
+
+<div class="container" style="margin: 3%;">
+
+    @while (ActualColumn < ColumnCount)
+    {
+        <div class="columns">
+            @foreach (var repository in GetList())
+            {
+                <div class="column is-6">
+                    <CardRepository Name=@repository.Name Url=@repository.Url Description=@repository.Description
+                PushedAt=@repository.PushedAt />
+                </div>
+            }
+        </div>
+
+    }
+
+</div>
+
+@code {
+
+    private int ActualColumn = 1;
+    private int Skip { get; set; } = 0;
+    private int ColumnCount => int.Parse(Math.Ceiling((State.Count / 2d)).ToString());
+
+    private List<Repository> GetList()
+    {
+        var list = State.Repositories.Skip(Skip).Take(2).ToList();
+        Skip += 2;
+        ActualColumn++;
+        return list;
+    }
+}
