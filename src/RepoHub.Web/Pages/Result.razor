@@ -1,0 +1,15 @@
+@page "/result"
+@inject State State
+
+<div class="columns is-centered is-vcentered is-mobile">
+    <div class="column">
+        <div class="block has-text-centered has-text-grey">
+            <Logo />
+            <p>
+                Aqui estão os repositórios de <b class="has-text-dark">@State.Username</b>, clique no Octocat para
+                voltar a pesquisar.
+            </p>
+        </div>
+        <Cards />
+    </div>
+</div>
