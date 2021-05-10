@@ -1,0 +1,21 @@
+@if (IsActive)
+{
+    <div class="notification @Color upper-notification">
+    <button class="delete">
+    </button>
+    @Message
+</div>
+}
+
+
+@code {
+
+    [Parameter]
+    public bool IsActive { get; set; }
+
+    [Parameter]
+    public string Message { get; set; }
+
+    [Parameter]
+    public string Color { get; set; } = "is-danger";
+}
