@@ -1,6 +1,7 @@
 @using Models
 @inject HttpClient HttpClient
 @inject State State
+@inject NavigationManager NavigationManager
 
 <div class="field has-addons has-addons-centered">
     <div class="control">
@@ -31,6 +32,7 @@
         {
             State.Username = UsernameInserted;
             State.Repositories = await response.Content.ReadFromJsonAsync<List<Repository>>();
+            NavigationManager.NavigateTo("result");
         }
         else
         {
