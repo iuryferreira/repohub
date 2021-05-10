@@ -13,7 +13,7 @@ jobs:
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 5.0.200
+          dotnet-version: 5.0.202
      
       - name: Build Blazor WASM
         run: dotnet publish src/RepoHub.Web/ -c Release --self-contained true -r linux-x64 -o deploy && cp static.json deploy
