@@ -4,6 +4,7 @@ on:
     branches: [main]
     paths:
       - src/RepoHub.Web/**
+      - .github/workflows/deploy.yaml
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -26,4 +27,4 @@ jobs:
           heroku_email: ${{ secrets.HEROKU_EMAIL }}
           procfile: true
           appdir: deploy
-          buildpack: heroku-community/static
+          buildpack: https://github.com/heroku/heroku-buildpack-static.git
