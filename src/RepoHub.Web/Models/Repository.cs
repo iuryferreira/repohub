@@ -1,3 +1,4 @@
+using System;
 using System.Text.Json.Serialization;
 
 namespace RepoHub.Web.Models
@@ -10,11 +11,14 @@ namespace RepoHub.Web.Models
         [JsonPropertyName("name")]
         public string Name { get; init; }
 
+        [JsonPropertyName("description")]
+        public string Description { get; init; }
+
         [JsonPropertyName("html_url")]
         public string Url { get; init; }
 
         [JsonPropertyName("pushed_at")]
-        public string PushedAt { get; init; }
+        public DateTime PushedAt { get; init; }
 
     }
 }
