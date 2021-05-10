@@ -1,0 +1,41 @@
+<div class="box">
+    <article class="media">
+        <div class="media-left">
+            <figure class="image is-32x32">
+                <img src="https://cdn0.iconfinder.com/data/icons/octicons/1024/repo-512.png" alt="Image">
+            </figure>
+        </div>
+        <div class="media-content">
+            <div class="content">
+                <p>
+                    <a href="@Url" class="has-text-dark">
+                        <strong>@Name</strong>
+                    </a>
+                    <br>
+                    <small>@Description</small>
+                </p>
+                <p class="is-italic has-text-right" style="font-size: smaller;">
+                    <small>último push em @PushedAt</small>
+                </p>
+            </div>
+        </div>
+        <div class="media-right">
+        </div>
+    </article>
+</div>
+
+@code {
+
+    [Parameter]
+    public string Name { get; set; }
+
+    [Parameter]
+    public string Description { get; set; }
+
+    [Parameter]
+    public DateTime PushedAt { get; set; }
+
+    [Parameter]
+    public string Url { get; set; }
+
+}
