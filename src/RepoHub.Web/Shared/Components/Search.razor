@@ -1,8 +1,11 @@
+@using Models
 @inject HttpClient HttpClient
+@inject State State
 
 <div class="field has-addons has-addons-centered">
     <div class="control">
-        <input class="input" type="text" placeholder="Digite o nome do usuário">
+        <input class="input" type="text" placeholder="Digite o nome do usuário" @bind="@UsernameInserted">
+
     </div>
     <div class="control">
         <button class="button is-dark" href="" @onclick="HandleSubmit">
@@ -11,9 +14,32 @@
     </div>
 </div>
 
+<Notification Color="is-danger" Message="Usuário não encontrado." IsActive=@ShowError />
+
 @code {
+
+    private string UsernameInserted { get; set; }
+    private bool ShowError { get; set; }
+
     private async Task HandleSubmit()
     {
+        Console.WriteLine(UsernameInserted);
 
+        var response = await HttpClient.GetAsync($"/users/{UsernameInserted}/repos");
+
+        if (response.StatusCode is System.Net.HttpStatusCode.OK)
+        {
+            State.Username = UsernameInserted;
+            State.Repositories = await response.Content.ReadFromJsonAsync<List<Repository>>();
+        }
+        else
+        {
+            ShowError = true;
+            StateHasChanged();
+            await Task.Delay(3000);
+            ShowError = false;
+            UsernameInserted = "";
+
+        }
     }
 }
