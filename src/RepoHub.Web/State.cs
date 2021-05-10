@@ -5,12 +5,14 @@ namespace RepoHub.Web
 {
     public class State
     {
-        public string Username { get; set; }
-        public List<Repository> Repositories { get; set; }
-
         public State ()
         {
             Repositories = new();
         }
+
+        public string Username { get; set; }
+        public List<Repository> Repositories { get; set; }
+        public int Count => Repositories.Count;
+
     }
 }
